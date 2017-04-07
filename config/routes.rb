@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :posts
   devise_for :users
   get 'pages/about'
-
+  get 'pages/home'
   get 'pages/contact'
 
   resources :sites
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'allusers' => "posts#users"
 
 
-  root 'sites#index' 
+  root 'pages#home' 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
