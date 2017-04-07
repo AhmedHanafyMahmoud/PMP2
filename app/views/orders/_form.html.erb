@@ -1,0 +1,50 @@
+<%= form_for([@site,@order]) do |f| %>
+  <% if order.errors.any? %>
+    <div id="error-explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h4>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="form-group">
+    <%= f.label "Select your post"%><br>
+    <%= f.collection_select :post_id, Post.where(user_id: current_user.id).order("created_at DESC"),:id,:name , class: "form-control" %>
+  </div>
+ <div class="form-group">
+    <%= f.label "Select the site"%> <br>
+    <%= f.collection_select :site_id, Site.all(),:id,:name , class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Period (in weeks)"  %>
+    <%= f.number_field :period , class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date , class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label "Frequency (per hours)" %>
+    <%= f.number_field :frequency , class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Your full address"%>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Your contact phone" %>
+    <%= f.text_field :phone, class: "form-control" %>
+  </div>
+ <div class="actions">
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+<% end %>

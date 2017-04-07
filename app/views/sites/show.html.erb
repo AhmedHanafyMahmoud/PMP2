@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-3">
+    <h2>
+      <%= @site.name %>
+    </h2>
+    <p>
+      <strong>Address:</strong>
+      <%= @site.address %>
+    </p>
+
+    <p>
+      <strong>Number of displays:</strong>
+      <%= @site.displayNumber %>
+    </p>
+    <p>
+      <strong>Price:</strong>
+      <%= number_to_currency(@site.price) %>
+    </p>
+    <iframe
+      width="230"
+      height="230"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCvcBR7iHp3hAW298x5bxqTN1DHKGnZHAU&q=<%= @site.address.parameterize %>&zoom=14">
+    </iframe>
+  </div>
+
+  <div class="col-md-9">
+    <p>
+      <strong>Description:</strong>
+      <%= @site.description %>
+    </p>
+    <br>
+    <p class= "text-center">
+<%= link_to 'Publish here', new_order_path , class: "btn btn-primary" , data: { no_turbolink: true } %>
+</p>
+   
+    <h4> Current played media: </h4>
+     <br>
+    <div class="center">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-3">
+            <div class="thumbnail">
+              <%=  image_tag(post.image.url) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<% if user_signed_in? && current_user.is_admin? %>
+  <%= link_to 'Edit', edit_site_path(@site), class: "btn btn-link" %>
+<% end %>
