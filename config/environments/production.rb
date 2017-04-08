@@ -18,7 +18,7 @@ Rails.application.configure do
       api_key: ENV['mailgun_API'],
       domain: ENV['mailgun_domain']
   }
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.perform_caching = false
   # Code is not reloaded between requests.
   config.cache_classes = true
