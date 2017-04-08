@@ -1,18 +1,23 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'www.pmp2017.herokuapp.com' }
-    # Don't care if the mailer can't send.
+  config.action_mailer.default_url_options = { host: 'smtp.mailgun.org'}
+  # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'pmp2017.herokuapp.com',
-    user_name:            ENV['Email'],
-    password:             ENV['Email_password'],
-    authentication:       'plain',
-    openssl_verify_mode:  'none'}
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.gmail.com',
+  #   port:                 587,
+  #   domain:               'gmail.com',
+  #   user_name:            ENV['Email'],
+  #   password:             ENV['Email_password'],
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true  }
 
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+      api_key: ENV['mailgun_API'],
+      domain: ENV['mailgun_domain']
+  }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
   # Code is not reloaded between requests.
