@@ -31,7 +31,7 @@
   </div>
   
   <div class="form-group">
-    <%= f.label "Frequency (per hours)" %>
+    <%= f.label "Frequency (per hours)" %> <sup data-toggle="tooltip" title="how many time you want to show your media per hour?" class="fa fa-exclamation-circle"></sup> 
     <%= f.number_field :frequency , class: "form-control" %>
   </div>
 
@@ -45,6 +45,6 @@
     <%= f.text_field :phone, class: "form-control" %>
   </div>
  <div class="actions">
-    <%= f.submit class: "btn btn-success" %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>

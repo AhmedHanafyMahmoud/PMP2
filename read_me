@@ -1,15 +1,13 @@
 I need to handle:
-	forget password
-	Mailer functionality: https://www.youtube.com/watch?v=OI-m0wbmf8A
 	online payment
 	home has recent posts!
-	status updated to cancel or expired automatically every day
 	
+	In order pages have buttons to 
+		refresh:status updated to cancel or expired automatically every day
+		paid, unpaid, all
+
+	<li class="active"> for navbar
+
 	JS tasks:
 		label for total price 
-		checkbox to confirm order
-		questionmark helper
-
-
-
-the render of the footer needs to be for some pages only not always
+		not sure if we need thatcheckbox to confirm order

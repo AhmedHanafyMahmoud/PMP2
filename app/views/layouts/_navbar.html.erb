@@ -41,8 +41,9 @@
         
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li><%= link_to "About", pages_about_path %></li>
+                        
                         <li><%= link_to "Contact", pages_contact_path %></li>
+                        <li><%= link_to "Sites", sites_path %></li>
                         <% if user_signed_in? %>
                           <% if current_user.is_admin? %>
                             <li class="dropdown">

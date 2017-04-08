@@ -1,6 +1,9 @@
 <div class="container-fluid">    
 <h1>My Media</h1>
-
+<p class= "text-center">
+<%= link_to 'Upload a new Media', new_post_path , class: "btn btn-primary" , data: { no_turbolink: true } %>
+</p>
+<br>
 <div class="center">
   <div class="row">
     <% @posts.each do |post| %>
@@ -17,9 +20,6 @@
   </div>
 </div>
 
-<br>
-<p class= "text-center">
-<%= link_to 'Create a new Media', new_post_path , class: "btn btn-primary" , data: { no_turbolink: true } %>
-</p>
+
 </div>
 <%= render 'layouts/footer' %>

@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
   # with the following lookup:
   #
   #   en.user_mailer.signup_confirmation.subject
-  default from: 'ahr.mahmoud@gmail.com'
+  default from: 'postmaster@app.campaignpmp.com'
 
   
   def signup_confirmation(user)
