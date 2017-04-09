@@ -22,13 +22,67 @@
   <%= @order.phone %>
 </p>
 <p>
-  <strong>Total Price:</strong>
-  <%= number_to_currency(@order.total_price) %>
+  <strong>Order number:</strong>
+  <%= @order.id %>
+</p>
+
+<p>
+  <strong>Total Price($):</strong>
+  <%= @order.total_price %>
 </p>
 <p>
   <strong>Status:</strong>
-  <%=  @order.status %>
+  <%= @order.status %>
 </p>
+
+<% if (@order.status == "unpaid") %>
+<%= form_tag charges_path do %>
+  <article>
+    <%= hidden_field_tag(:stripeToken) %>
+    <%= hidden_field_tag(:amount) %>
+    <%= hidden_field_tag(:orderId) %>
+  </article>
+  <button id='paynow'>Pay now</button>
+<% end %>
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<script>
+var handler = StripeCheckout.configure({
+  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+  locale: 'auto',
+  name: 'PMP campaign',
+  description: 'Order payment',
+  token: function(token) {
+    $('input#stripeToken').val(token.id);
+    $('form').submit();
+  }
+});
+$('input#amount').val("<%= @order.total_price %>");
+$('input#orderId').val("<%= @order.id %>");
+
+$('#paynow').on('click', function(e) {
+  e.preventDefault();
+
+  $('#error_explanation').html('');
+
+  var amount = $('input#amount').val();
+  amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+
+  amount = parseFloat(amount);
+    amount = amount * 100; // Needs to be an integer!
+    handler.open({
+      amount: Math.round(amount)
+    })
+  
+});
+// Close Checkout on page navigation
+$(window).on('popstate', function() {
+  handler.close();
+});
+</script>
+<% end %>
+
 <%= link_to 'Edit', edit_order_path %> |
 <%= link_to 'Back', :back  %>
 </div>

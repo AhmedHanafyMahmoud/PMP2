@@ -1,3 +1,5 @@
+alert when deleting something that will lead to deleting the orders as well.
+
 I need to handle:
 	online payment
 	home has recent posts!

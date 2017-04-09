@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :charges, :only => [:create]
+
   get 'admin/edit_user'
   get 'admin/edit_order'
 
